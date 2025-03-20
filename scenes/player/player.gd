@@ -3,7 +3,7 @@ const base_speed: int = 500
 
 var can_laser: bool = true
 var can_granade: bool = true
-
+var sparks: GPUParticles2D
 
 #signals
 signal player_shoot(pos: Vector2, dir: Vector2)
@@ -17,6 +17,8 @@ func player_primary_action(dir: Vector2):
 		can_laser = false
 		$LaserTimer.start()
 		player_shoot.emit(laser_marker.global_position, dir)
+		sparks.emitting = true
+		
 		
 
 func player_secondary_action(dir: Vector2):
@@ -26,6 +28,9 @@ func player_secondary_action(dir: Vector2):
 		$GranadeTimer.start()
 		var granade_marker_position = $GranadeStartPosition/GranadeMarker.global_position
 		player_throw_granade.emit(granade_marker_position, dir)
+		
+func _ready() -> void:
+	sparks = $ShootingSparks
 		
 func _process(_delta: float) -> void:
 	var player_direction = (get_global_mouse_position() - position).normalized()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://b3aafgyj8llwd"]
+[gd_scene load_steps=18 format=4 uid="uid://b3aafgyj8llwd"]
 
 [ext_resource type="Script" uid="uid://dcblufwevwjn4" path="res://scenes/levels/level.gd" id="1_b2cq8"]
 [ext_resource type="Texture2D" uid="uid://7jbjbtu8bdbe" path="res://graphics/ground/stones.png" id="2_xb4v1"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://2u0f0trdixge" path="res://graphics/tilesets/outside_walls.png" id="8_7pb6i"]
 [ext_resource type="Texture2D" uid="uid://cs46b21s67qwy" path="res://graphics/tilesets/soil.png" id="9_xfk5q"]
 [ext_resource type="PackedScene" uid="uid://b46kmu86clia6" path="res://scenes/assets/buildings/house.tscn" id="10_xfk5q"]
+[ext_resource type="PackedScene" uid="uid://dpdokfh6cn0fa" path="res://scenes/assets/steam_vent.tscn" id="11_qogh7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8iyoh"]
 resource_name = "soil"
@@ -60,7 +61,7 @@ texture_repeat = 2
 position = Vector2(471, 891)
 texture = ExtResource("2_xb4v1")
 region_enabled = true
-region_rect = Rect2(-1958.58, -533.594, 5240.55, 2578.5)
+region_rect = Rect2(-5530.38, -1965.72, 10683.6, 6224.35)
 
 [node name="Decoration" type="Sprite2D" parent="Ground"]
 position = Vector2(-146, 822)
@@ -95,8 +96,11 @@ texture = ExtResource("7_qogh7")
 position = Vector2(-2372, 4189)
 rotation = 4.18879
 
+[node name="SteamVent" parent="Ground" instance=ExtResource("11_qogh7")]
+position = Vector2(486, 872)
+
 [node name="Player" parent="." instance=ExtResource("3_b2cq8")]
-position = Vector2(578, 595)
+position = Vector2(-1656, 1304)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.6, 0.6)
