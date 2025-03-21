@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://b3aafgyj8llwd"]
+[gd_scene load_steps=19 format=4 uid="uid://b3aafgyj8llwd"]
 
 [ext_resource type="Script" uid="uid://dcblufwevwjn4" path="res://scenes/levels/level.gd" id="1_b2cq8"]
 [ext_resource type="Texture2D" uid="uid://7jbjbtu8bdbe" path="res://graphics/ground/stones.png" id="2_xb4v1"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cs46b21s67qwy" path="res://graphics/tilesets/soil.png" id="9_xfk5q"]
 [ext_resource type="PackedScene" uid="uid://b46kmu86clia6" path="res://scenes/assets/buildings/house.tscn" id="10_xfk5q"]
 [ext_resource type="PackedScene" uid="uid://dpdokfh6cn0fa" path="res://scenes/assets/steam_vent.tscn" id="11_qogh7"]
+[ext_resource type="PackedScene" uid="uid://drl5fqhg28fj8" path="res://scenes/assets/light_fan_animation.tscn" id="12_8iyoh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8iyoh"]
 resource_name = "soil"
@@ -99,6 +100,11 @@ rotation = 4.18879
 [node name="SteamVent" parent="Ground" instance=ExtResource("11_qogh7")]
 position = Vector2(486, 872)
 
+[node name="LightFanAnimation" parent="Ground" instance=ExtResource("12_8iyoh")]
+position = Vector2(-2609, 2549)
+autoplay = "default"
+frame_progress = 0.372246
+
 [node name="Player" parent="." instance=ExtResource("3_b2cq8")]
 position = Vector2(-1656, 1304)
 
@@ -107,8 +113,11 @@ zoom = Vector2(0.6, 0.6)
 
 [node name="Gate" parent="." instance=ExtResource("3_xb4v1")]
 position = Vector2(0, -1)
+metadata/_edit_lock_ = true
 
 [node name="Projectiles" type="Node2D" parent="."]
+position = Vector2(-1, 0)
+metadata/_edit_lock_ = true
 
 [connection signal="player_shoot" from="Player" to="." method="_on_player_player_shoot"]
 [connection signal="player_throw_granade" from="Player" to="." method="_on_player_player_throw_granade"]

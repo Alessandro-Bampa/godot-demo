@@ -207,7 +207,6 @@ sources/0 = SubResource("TileSetAtlasSource_0icjl")
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(2144.5, 968)
 shape = SubResource("RectangleShape2D_b2r25")
 
@@ -232,4 +231,4 @@ position = Vector2(4012, 616)
 rotation = 1.5708
 
 [node name="WallLight" parent="." instance=ExtResource("3_e3m3k")]
-position = Vector2(1026, 305)
+position = Vector2(968, 299)
