@@ -1,25 +1,19 @@
 extends Node2D
+class_name LevelParent
 var player: Node2D
 
 var laser_scene: PackedScene = preload("res://scenes/projectiles/laser.tscn")
 var granade_scene: PackedScene = preload("res://scenes/projectiles/granade.tscn")
 
-#from gate default signal
-func _on_gate_player_entered_gate(body) -> void:
-	print(body)
-	print("player entered on gate at level")
+
 
 #from player custom signlas
 func _on_player_player_shoot(pos: Vector2, direction: Vector2) -> void:
-	print("before instantiate")
 	var laser: Node2D = laser_scene.instantiate()
-	print("after instantiate")
 	laser.position = pos
 	laser.direction = direction
 	laser.rotation = direction.angle()
-	print("before add to child")
 	$Projectiles.add_child(laser)
-	print("after add to child")
 	
 func _on_player_player_throw_granade(pos: Vector2, direction: Vector2) -> void:
 	#istanza oggetto granata
@@ -28,3 +22,15 @@ func _on_player_player_throw_granade(pos: Vector2, direction: Vector2) -> void:
 	grenade_instance.linear_velocity = direction * grenade_instance.speed
 	$Projectiles.add_child(grenade_instance)
 	
+
+
+func _on_house_player_entered() -> void:
+	var tween = get_tree().create_tween()
+	tween.set_parallel(true) # esegui le animazioni in parallelo e non una dopo l'altra
+	tween.tween_property($Player/Camera2D as Camera2D, "zoom", Vector2(1,1), 1)
+	
+
+
+func _on_house_player_exited() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property($Player/Camera2D as Camera2D, "zoom", Vector2(0.6,0.6), 1)

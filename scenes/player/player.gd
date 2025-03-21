@@ -1,10 +1,12 @@
 extends CharacterBody2D
-const base_speed: int = 500
 
 var can_laser: bool = true
 var can_granade: bool = true
 var sparks: GPUParticles2D
 
+@export
+var max_speed: int = 500
+var speed: int = max_speed
 #signals
 signal player_shoot(pos: Vector2, dir: Vector2)
 signal player_throw_granade(pos: Vector2, dir: Vector2)
@@ -43,7 +45,7 @@ func _process(_delta: float) -> void:
 func player_movements():
 	#input
 	var direction = Input.get_vector("left", "right", "up", "down")
-	velocity =  direction * base_speed
+	velocity =  direction * speed
 	move_and_slide()
 	
 func player_rotation():

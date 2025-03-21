@@ -14,3 +14,6 @@ func movement():
 	var direction = Vector2.RIGHT
 	velocity = direction * base_speed
 	move_and_slide()
+	
+func hit():
+	print("hitted")

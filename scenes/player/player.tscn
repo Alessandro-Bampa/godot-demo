@@ -39,7 +39,6 @@ rotation = 1.5708
 texture = ExtResource("1_dovo2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_dovo2")
 
 [node name="LaserTimer" type="Timer" parent="."]
@@ -53,21 +52,21 @@ one_shot = true
 [node name="LaserStartPosition" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="LaserStartPosition"]
-position = Vector2(127, 19)
+position = Vector2(129, 19)
 
 [node name="Marker2D2" type="Marker2D" parent="LaserStartPosition"]
-position = Vector2(124, 29)
+position = Vector2(128, 27)
 
 [node name="Marker2D3" type="Marker2D" parent="LaserStartPosition"]
-position = Vector2(124, 12)
+position = Vector2(129, 11)
 
 [node name="GranadeStartPosition" type="Node2D" parent="."]
 
 [node name="GranadeMarker" type="Marker2D" parent="GranadeStartPosition"]
-position = Vector2(127, 22)
+position = Vector2(129, 22)
 
 [node name="ShootingSparks" type="GPUParticles2D" parent="."]
-position = Vector2(127, 18)
+position = Vector2(129, 18)
 emitting = false
 amount = 10
 texture = ExtResource("3_gmlin")

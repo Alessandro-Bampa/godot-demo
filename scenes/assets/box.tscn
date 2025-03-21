@@ -1,17 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://855emlesk42m"]
+[gd_scene load_steps=4 format=3 uid="uid://d1ak7qjoopd0d"]
 
-[ext_resource type="Texture2D" uid="uid://da5vj4fn444cj" path="res://graphics/objects/box/lid.png" id="1_rq8ie"]
+[ext_resource type="PackedScene" uid="uid://co73dpdqp5aw" path="res://scenes/assets/item_container.tscn" id="1_d6xfa"]
+[ext_resource type="Script" uid="uid://ccmqj0cls1hs6" path="res://box.gd" id="2_vbyva"]
+[ext_resource type="Texture2D" uid="uid://cuk5tdfntnw23" path="res://graphics/objects/Box.png" id="3_j2j06"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kelsm"]
-size = Vector2(360, 163)
+[node name="Box" instance=ExtResource("1_d6xfa")]
+script = ExtResource("2_vbyva")
 
-[node name="Box" type="StaticBody2D"]
-collision_layer = 4
-collision_mask = 11
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_j2j06")
 
-[node name="BoxImage" type="Sprite2D" parent="."]
-texture = ExtResource("1_rq8ie")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -1.5)
-shape = SubResource("RectangleShape2D_kelsm")
+[node name="CollisionPolygon2D" parent="." index="1"]
+scale = Vector2(20, 20)
+polygon = PackedVector2Array(-0.5, 6.4, 8.85, 6.45, 8.85, -6.4, -8.9, -6.4, -8.9, 6.4)

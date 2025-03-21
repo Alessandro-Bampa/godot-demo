@@ -11,6 +11,8 @@ height = 392.0
 polygon = PackedVector2Array(99, -2, 99, 19, 102, 21, 106, 19, 104, 17, 106, 15, 106, 1, 103, -3, 100, -4)
 
 [node name="WallLight" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 11
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(3.25002, 12)
