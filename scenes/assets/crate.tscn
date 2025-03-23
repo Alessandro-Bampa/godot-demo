@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1ak7qjoopd0d"]
+
+[ext_resource type="PackedScene" uid="uid://co73dpdqp5aw" path="res://scenes/assets/item_container.tscn" id="1_d6xfa"]
+[ext_resource type="Script" uid="uid://ccmqj0cls1hs6" path="res://scenes/assets/crate.gd" id="2_vbyva"]
+[ext_resource type="Texture2D" uid="uid://da5vj4fn444cj" path="res://graphics/objects/box/lid.png" id="3_d6xfa"]
+
+[node name="Crate" instance=ExtResource("1_d6xfa")]
+script = ExtResource("2_vbyva")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-1.49999, 0)
+scale = Vector2(0.983562, 1)
+texture = ExtResource("3_d6xfa")
+
+[node name="CollisionPolygon2D" parent="." index="1"]
+scale = Vector2(20, 20)
+polygon = PackedVector2Array(-0.3, 4.2, 8.85, 4.2, 8.85, -4.1, -9, -4.1, -9, 4.2)

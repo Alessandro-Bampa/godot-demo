@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dpdokfh6cn0fa" path="res://scenes/assets/steam_vent.tscn" id="11_6u4a0"]
 [ext_resource type="PackedScene" uid="uid://drl5fqhg28fj8" path="res://scenes/assets/light_fan_animation.tscn" id="12_oe17f"]
 [ext_resource type="PackedScene" uid="uid://bt1y5vatdtm4o" path="res://scenes/assets/toilet.tscn" id="15_x30qc"]
-[ext_resource type="PackedScene" uid="uid://d1ak7qjoopd0d" path="res://scenes/assets/box.tscn" id="16_uaeil"]
+[ext_resource type="PackedScene" uid="uid://d1ak7qjoopd0d" path="res://scenes/assets/crate.tscn" id="16_uaeil"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbwx5"]
 resource_name = "soil"
@@ -101,9 +101,9 @@ rotation = 4.18879
 position = Vector2(486, 872)
 
 [node name="LightFanAnimation" parent="Ground" index="10" instance=ExtResource("12_oe17f")]
-position = Vector2(-2609, 2549)
+position = Vector2(-2752, 2369)
 autoplay = "default"
-frame_progress = 0.372246
+frame_progress = 0.382134
 
 [node name="Gate" parent="." index="3" instance=ExtResource("2_x73sx")]
 
