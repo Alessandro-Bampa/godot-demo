@@ -2,11 +2,15 @@
 
 [ext_resource type="Script" uid="uid://dj23fipskh8kr" path="res://scenes/assets/item_container.gd" id="1_4b4lt"]
 
-[node name="ItemContainer" type="StaticBody2D"]
+[node name="ItemContainer" type="StaticBody2D" groups=["Container"]]
 collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_4b4lt")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BaseSprite" type="Sprite2D" parent="."]
+
+[node name="LidSprite" type="Sprite2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[node name="SpawnPosition" type="Node2D" parent="."]

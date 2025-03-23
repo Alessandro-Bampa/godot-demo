@@ -15,6 +15,11 @@ run/main_scene="uid://c56l4udwpdb44"
 config/features=PackedStringArray("4.4", "C#", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Globals="*res://globals/globals.gd"
+LevelTransition="*res://globals/level_transition.tscn"
+
 [display]
 
 window/size/viewport_width=1280
@@ -23,6 +28,10 @@ window/size/viewport_height=720
 [dotnet]
 
 project/assembly_name="godot-demo"
+
+[global_group]
+
+Container="Scene e script Base o Interfaccia"
 
 [input]
 

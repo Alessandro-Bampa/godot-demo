@@ -13,7 +13,8 @@ signal player_throw_granade(pos: Vector2, dir: Vector2)
 	
 func player_primary_action(dir: Vector2):
 	#shooting
-	if(Input.is_action_pressed("primary_action")) and can_laser:
+	if(Input.is_action_pressed("primary_action")) and can_laser and Globals.laser_amount > 0:
+		Globals.laser_amount -= 1
 		#random select a marker for start of the laser
 		var laser_marker: Marker2D = $LaserStartPosition.get_children().pick_random();
 		can_laser = false
@@ -25,7 +26,8 @@ func player_primary_action(dir: Vector2):
 
 func player_secondary_action(dir: Vector2):
 	#throw granade
-	if(Input.is_action_just_pressed("secondary_action")) and can_granade:
+	if(Input.is_action_just_pressed("secondary_action")) and can_granade and Globals.grenade_amount > 0:
+		Globals.grenade_amount -= 1
 		can_granade = false
 		$GranadeTimer.start()
 		var granade_marker_position = $GranadeStartPosition/GranadeMarker.global_position
