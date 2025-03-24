@@ -49,6 +49,7 @@ func player_movements():
 	var direction = Input.get_vector("left", "right", "up", "down")
 	velocity =  direction * speed
 	move_and_slide()
+	Globals.player_position = global_position
 	
 func player_rotation():
 	look_at(get_global_mouse_position())

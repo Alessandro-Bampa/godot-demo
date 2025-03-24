@@ -8,7 +8,6 @@ func _on_gate_player_entered_gate(_body) -> void:
 
 func _on_house_player_entered() -> void:
 	var tween = get_tree().create_tween()
-	tween.set_parallel(true) # esegui le animazioni in parallelo e non una dopo l'altra
 	tween.tween_property($Player/Camera2D as Camera2D, "zoom", Vector2(1,1), 1)
 	
 
