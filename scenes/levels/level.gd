@@ -12,10 +12,6 @@ func _ready():
 	for scout in get_tree().get_nodes_in_group("Scouts"):
 		scout.connect("laser", _on_scout_laser)
 			
-func _process(_delta: float) -> void:
-	for projectile in get_tree().get_nodes_in_group("Grenades"):
-		if("explode" in projectile && not projectile.is_connected("explosion_damage", _take_explosion_damage)):
-			projectile.connect("explosion_damage", _take_explosion_damage)
 
 func _on_container_opened(pos, direction):
 	var item: Node2D  = item_scene.instantiate()
@@ -43,11 +39,5 @@ func _on_player_player_throw_granade(pos: Vector2, direction: Vector2) -> void:
 	grenade_instance.position = pos
 	grenade_instance.linear_velocity = direction * grenade_instance.speed
 	$Projectiles.add_child(grenade_instance)
-	
-func _take_explosion_damage(pos: Vector2, range: float,damage: int):
-	for entity in get_tree().get_nodes_in_group("Entity"):
-		if entity.global_position.distance_to(pos) < range:
-			print(entity, "hitted whit ", damage, " damage")
-			if "hit" in entity:
-				entity.hit(damage)
+
 	

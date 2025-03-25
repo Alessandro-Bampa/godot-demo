@@ -3,7 +3,8 @@ extends CharacterBody2D
 var player_nearby: bool = false
 var can_laser: bool = true
 var last_cannon_used: bool = true
-var health = 60
+var can_be_hitted: bool = true
+var health = 30
 signal laser(pos, direction)
 
 func _process(_delta: float) -> void:
@@ -15,7 +16,7 @@ func _process(_delta: float) -> void:
 			var direction: Vector2 = (Globals.player_position - position).normalized()
 			laser.emit(pos, direction)
 			can_laser = false
-			$LaserCooldown.start()
+			$Timers/LaserCooldown.start()
 
 
 func _on_attack_area_body_entered(_body: Node2D) -> void:
@@ -30,8 +31,18 @@ func _on_laser_cooldown_timeout() -> void:
 	can_laser = true
 	
 func hit(damage: int = 0):
-	print("scout hitted")
-	health -= damage
-	if health <= 0:
-		queue_free()
+	if can_be_hitted:
+		can_be_hitted = false
+		$Timers/HitCooldown.start()
+		#var tween = get_tree().create_tween()
+		#tween.tween_property($Sprite2D,"material.progress", 1, 0.3)
+		$Sprite2D.material.set_shader_parameter("progress", 1)
+		health -= damage
+		if health <= 0:
+			queue_free()
 	
+
+
+func _on_hit_cooldown_timeout() -> void:
+	can_be_hitted = true
+	$Sprite2D.material.set_shader_parameter("progress", 0)

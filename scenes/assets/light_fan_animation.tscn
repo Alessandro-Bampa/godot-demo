@@ -204,8 +204,8 @@ animations = [{
 
 [node name="LightFanAnimation" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_wlopf")
-frame = 41
-frame_progress = 0.764564
+frame = 46
+frame_progress = 0.829211
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(1.5, 1.5)

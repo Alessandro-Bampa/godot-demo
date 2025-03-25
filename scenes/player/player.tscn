@@ -41,14 +41,6 @@ texture = ExtResource("1_dovo2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dovo2")
 
-[node name="LaserTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
-[node name="GranadeTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
 [node name="LaserStartPosition" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="LaserStartPosition"]
@@ -77,5 +69,19 @@ process_material = SubResource("ParticleProcessMaterial_lvxji")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_gmlin")
 
-[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
-[connection signal="timeout" from="GranadeTimer" to="." method="_on_granade_timer_timeout"]
+[node name="Timers" type="Node" parent="."]
+
+[node name="LaserTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="GranadeTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
+one_shot = true
+
+[node name="HitTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+
+[connection signal="timeout" from="Timers/LaserTimer" to="." method="_on_laser_timer_timeout"]
+[connection signal="timeout" from="Timers/GranadeTimer" to="." method="_on_granade_timer_timeout"]
+[connection signal="timeout" from="Timers/HitTimer" to="." method="_on_hit_timer_timeout"]

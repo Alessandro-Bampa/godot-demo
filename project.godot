@@ -34,7 +34,6 @@ project/assembly_name="godot-demo"
 Container="Scene e script Base o Interfaccia"
 Scouts="Groups for scouts enemies"
 Entity="all hittable entities"
-Grenades=""
 
 [input]
 

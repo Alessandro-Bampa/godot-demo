@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if "hit" in body:
-		body.hit(0)
+		body.hit(10)
 	queue_free()
 
 func _on_destroy_after_shoot_timeout():

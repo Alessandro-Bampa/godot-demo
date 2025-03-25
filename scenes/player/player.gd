@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var can_laser: bool = true
 var can_granade: bool = true
+var can_be_hitted: bool = true
 var sparks: GPUParticles2D
 
 @export
@@ -18,7 +19,7 @@ func player_primary_action(dir: Vector2):
 		#random select a marker for start of the laser
 		var laser_marker: Marker2D = $LaserStartPosition.get_children().pick_random();
 		can_laser = false
-		$LaserTimer.start()
+		$Timers/LaserTimer.start()
 		player_shoot.emit(laser_marker.global_position, dir)
 		sparks.emitting = true
 		
@@ -29,7 +30,7 @@ func player_secondary_action(dir: Vector2):
 	if(Input.is_action_just_pressed("secondary_action")) and can_granade and Globals.grenade_amount > 0:
 		Globals.grenade_amount -= 1
 		can_granade = false
-		$GranadeTimer.start()
+		$Timers/GranadeTimer.start()
 		var granade_marker_position = $GranadeStartPosition/GranadeMarker.global_position
 		player_throw_granade.emit(granade_marker_position, dir)
 		
@@ -62,5 +63,11 @@ func _on_granade_timer_timeout() -> void:
 	can_granade = true
 	
 func hit(damage: int = 0):
-	print("player hitted")
-	Globals.health -= damage
+	if can_be_hitted:
+		can_be_hitted = false
+		$Timers/HitTimer.start()
+		Globals.health -= damage
+
+
+func _on_hit_timer_timeout() -> void:
+	can_be_hitted = true

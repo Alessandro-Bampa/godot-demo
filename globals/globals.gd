@@ -18,6 +18,8 @@ var health = 60:
 	get:
 		return health
 	set(value):
+		if value > 100:
+			value = 100
 		health = value
 		stats_change.emit()
 		
