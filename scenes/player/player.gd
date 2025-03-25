@@ -60,3 +60,7 @@ func _on_laser_timer_timeout() -> void:
 
 func _on_granade_timer_timeout() -> void:
 	can_granade = true
+	
+func hit(damage: int = 0):
+	print("player hitted")
+	Globals.health -= damage

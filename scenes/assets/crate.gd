@@ -1,6 +1,6 @@
 extends BaseItem
 
-func hit():
+func hit(_damage: int = 0):
 	if not opened:
 		$LidSprite.hide()
 		for i in range(5):
