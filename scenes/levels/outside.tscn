@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://c56l4udwpdb44"]
+[gd_scene load_steps=25 format=4 uid="uid://c56l4udwpdb44"]
 
 [ext_resource type="PackedScene" uid="uid://b3aafgyj8llwd" path="res://scenes/levels/level.tscn" id="1_2s4ok"]
 [ext_resource type="Texture2D" uid="uid://7jbjbtu8bdbe" path="res://graphics/ground/stones.png" id="2_qvsb0"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://d1ak7qjoopd0d" path="res://scenes/assets/crate.tscn" id="16_uaeil"]
 [ext_resource type="PackedScene" uid="uid://cdk5s1c6yqtd3" path="res://scenes/enemy/scout.tscn" id="18_bjulg"]
 [ext_resource type="PackedScene" uid="uid://oh2rrprudtc0" path="res://scenes/enemy/bug.tscn" id="19_gd7nx"]
+[ext_resource type="PackedScene" uid="uid://tcr5ty5susfw" path="res://scenes/enemy/Drone.tscn" id="20_4lnny"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbwx5"]
 resource_name = "soil"
@@ -140,6 +141,9 @@ position = Vector2(-791, 990)
 
 [node name="Bug2" parent="Enemies" index="3" instance=ExtResource("19_gd7nx")]
 position = Vector2(-621, 638)
+
+[node name="Drone" parent="Enemies" index="4" instance=ExtResource("20_4lnny")]
+position = Vector2(1717, 2908)
 
 [node name="Player" parent="." index="12"]
 position = Vector2(298, 1645)

@@ -63,8 +63,10 @@ func hit(hitDamage: int = 0):
 		can_be_hitted = false
 		$Timers/HitTimer.start()
 		$AnimatedSprite2D.material.set_shader_parameter("progress", 1)
+		$Particles/HitParticles.emitting = true
 		health -= hitDamage
 		if health <= 0:
+			await get_tree().create_timer(0.5).timeout
 			queue_free()
 
 
