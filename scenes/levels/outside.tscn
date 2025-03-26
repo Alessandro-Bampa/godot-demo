@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://c56l4udwpdb44"]
+[gd_scene load_steps=27 format=4 uid="uid://c56l4udwpdb44"]
 
 [ext_resource type="PackedScene" uid="uid://b3aafgyj8llwd" path="res://scenes/levels/level.tscn" id="1_2s4ok"]
 [ext_resource type="Texture2D" uid="uid://7jbjbtu8bdbe" path="res://graphics/ground/stones.png" id="2_qvsb0"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cdk5s1c6yqtd3" path="res://scenes/enemy/scout.tscn" id="18_bjulg"]
 [ext_resource type="PackedScene" uid="uid://oh2rrprudtc0" path="res://scenes/enemy/bug.tscn" id="19_gd7nx"]
 [ext_resource type="PackedScene" uid="uid://tcr5ty5susfw" path="res://scenes/enemy/Drone.tscn" id="20_4lnny"]
+[ext_resource type="PackedScene" uid="uid://blb8roqtm82j4" path="res://scenes/enemy/car.tscn" id="21_cnio0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbwx5"]
 resource_name = "soil"
@@ -58,6 +59,12 @@ texture_region_size = Vector2i(390, 390)
 tile_size = Vector2i(390, 390)
 sources/0 = SubResource("TileSetAtlasSource_vkmey")
 
+[sub_resource type="Curve2D" id="Curve2D_6u4a0"]
+_data = {
+"points": PackedVector2Array(373.758, 328.109, -373.758, -328.109, -1580, 8250, -163.292, 478.485, 163.292, -478.485, -2112, 6388, 0, 0, 0, 0, -368, 5058, -1359.26, -856.927, 1359.26, 856.927, 2941, 5147, 22.28, -449.666, -22.28, 449.666, 3936, 7156, 232.405, -6.11591, -232.405, 6.11591, 784, 8427, 158.267, 56.9459, -158.267, -56.9459, -1580, 8250)
+}
+point_count = 7
+
 [node name="Outside" instance=ExtResource("1_2s4ok")]
 script = ExtResource("2_xqqjy")
 
@@ -81,7 +88,7 @@ texture_repeat = 2
 position = Vector2(471, 891)
 texture = ExtResource("2_qvsb0")
 region_enabled = true
-region_rect = Rect2(-5530.38, -1965.72, 10683.6, 6224.35)
+region_rect = Rect2(-5530.38, -9799.18, 22968.9, 18336.3)
 metadata/_edit_lock_ = true
 
 [node name="Decoration" type="Sprite2D" parent="Ground" index="1"]
@@ -134,7 +141,7 @@ position = Vector2(295, 509)
 position = Vector2(764, 982)
 
 [node name="Scout2" parent="Enemies" index="1" instance=ExtResource("18_bjulg")]
-position = Vector2(1115, 1015)
+position = Vector2(849, 3243)
 
 [node name="Bug" parent="Enemies" index="2" instance=ExtResource("19_gd7nx")]
 position = Vector2(-791, 990)
@@ -143,11 +150,20 @@ position = Vector2(-791, 990)
 position = Vector2(-621, 638)
 
 [node name="Drone" parent="Enemies" index="4" instance=ExtResource("20_4lnny")]
-position = Vector2(1717, 2908)
+position = Vector2(1882, 3098)
 
 [node name="Player" parent="." index="12"]
-position = Vector2(298, 1645)
+position = Vector2(-2455, 6635)
 rotation = 1.5708
+metadata/_edit_group_ = true
+
+[node name="Path2D" type="Path2D" parent="." index="14"]
+position = Vector2(-49, 0)
+curve = SubResource("Curve2D_6u4a0")
+
+[node name="Car" parent="Path2D" index="0" instance=ExtResource("21_cnio0")]
+position = Vector2(-1580, 8250)
+rotation = -2.42114
 
 [connection signal="player_entered" from="Ground/House" to="." method="_on_house_player_entered"]
 [connection signal="player_exited" from="Ground/House" to="." method="_on_house_player_exited"]

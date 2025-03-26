@@ -34,8 +34,6 @@ func hit(damage: int = 0):
 	if can_be_hitted:
 		can_be_hitted = false
 		$Timers/HitCooldown.start()
-		#var tween = get_tree().create_tween()
-		#tween.tween_property($Sprite2D,"material.progress", 1, 0.3)
 		$Sprite2D.material.set_shader_parameter("progress", 1)
 		health -= damage
 		if health <= 0:

@@ -1,8 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://tcr5ty5susfw"]
+[gd_scene load_steps=12 format=3 uid="uid://tcr5ty5susfw"]
 
 [ext_resource type="Script" uid="uid://cf48p2swwwtm6" path="res://scenes/enemy/drone.gd" id="1_kgyng"]
 [ext_resource type="Texture2D" uid="uid://d3posme3v3p8" path="res://graphics/enemies/drone.png" id="1_krcl5"]
+[ext_resource type="Shader" uid="uid://dvss3epjpll71" path="res://scenes/enemy/bug.gdshader" id="2_17e17"]
 [ext_resource type="Texture2D" uid="uid://dbtxbxdwm00hm" path="res://graphics/explosions/explosion_3.png" id="3_4ociu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_we8mw"]
+shader = ExtResource("2_17e17")
+shader_parameter/color = Color(0.495389, 0.87438, 1, 1)
+shader_parameter/progress = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kgyng"]
 radius = 66.3702
@@ -64,6 +70,35 @@ tracks/3/keys = {
 "method": &"queue_free"
 }]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.8, 1.1, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"spread_explosion_damage"
+}, {
+"args": [],
+"method": &"spread_explosion_damage"
+}, {
+"args": [],
+"method": &"spread_explosion_damage"
+}, {
+"args": [],
+"method": &"spread_explosion_damage"
+}, {
+"args": [],
+"method": &"spread_explosion_damage"
+}, {
+"args": [],
+"method": &"spread_explosion_damage"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_we8mw"]
 length = 0.001
@@ -110,12 +145,16 @@ _data = {
 &"RESET": SubResource("Animation_we8mw")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_17e17"]
+radius = 199.01
+
 [node name="Drone" type="CharacterBody2D" groups=["Entity"]]
 collision_layer = 2
 collision_mask = 15
 script = ExtResource("1_kgyng")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_we8mw")
 rotation = 1.5708
 texture = ExtResource("1_krcl5")
 
@@ -141,5 +180,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_dl7tq")
 }
 
+[node name="DamageArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource("CircleShape2D_17e17")
+debug_color = Color(0.982003, 0, 0.36608, 0.42)
+
 [connection signal="body_entered" from="NoticeArea" to="." method="_on_notice_area_body_entered"]
 [connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]
