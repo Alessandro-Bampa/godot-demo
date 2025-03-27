@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://dpio6d55knktl"]
+
+[ext_resource type="Script" uid="uid://hapivsr7iwr5" path="res://scenes/enemy/hunter.gd" id="1_dan73"]
+[ext_resource type="Texture2D" uid="uid://b88q87magdqy2" path="res://graphics/enemies/hunter/parts/torso.png" id="2_7ktkj"]
+[ext_resource type="Texture2D" uid="uid://dexp64mnvwhix" path="res://graphics/enemies/hunter/parts/leg_front_inner.png" id="3_hektb"]
+[ext_resource type="Texture2D" uid="uid://dp6bjlcp6msrd" path="res://graphics/enemies/hunter/parts/leg_front_outer.png" id="4_viaww"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dan73"]
+radius = 25.0
+height = 314.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lkknp"]
+radius = 719.201
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dan73"]
+radius = 221.002
+
+[node name="Hunter" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 15
+script = ExtResource("1_dan73")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_dan73")
+
+[node name="NoticeArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea"]
+shape = SubResource("CircleShape2D_lkknp")
+debug_color = Color(0.638691, 0.520394, 0.20767, 0.42)
+
+[node name="AttackArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_dan73")
+debug_color = Color(0.959216, 0.187354, 0.203813, 0.42)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="Timers" type="Node2D" parent="."]
+position = Vector2(8, 3)
+metadata/_edit_lock_ = true
+
+[node name="NavigationTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
+autostart = true
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+
+[node name="Torso" type="Bone2D" parent="Skeleton2D"]
+metadata/_edit_lock_ = true
+
+[node name="Torso" type="Sprite2D" parent="Skeleton2D/Torso"]
+rotation = 1.5708
+texture = ExtResource("2_7ktkj")
+
+[node name="FrontRightLeg" type="Bone2D" parent="Skeleton2D/Torso"]
+position = Vector2(54, 24)
+rotation = 1.5708
+
+[node name="LegFrontInner" type="Sprite2D" parent="Skeleton2D/Torso/FrontRightLeg"]
+position = Vector2(26, -34)
+texture = ExtResource("3_hektb")
+
+[node name="FrontRightClaw" type="Bone2D" parent="Skeleton2D/Torso/FrontRightLeg"]
+position = Vector2(49, -60)
+auto_calculate_length_and_angle = false
+length = 120.0
+bone_angle = -56.842
+
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Torso/FrontRightLeg/FrontRightClaw"]
+position = Vector2(45, -36)
+texture = ExtResource("4_viaww")
+
+[node name="Targets" type="Node2D" parent="."]
+
+[node name="FrontRight" type="Marker2D" parent="Targets"]
+position = Vector2(222, 142)
+
+[node name="Marker2D2" type="Marker2D" parent="Targets"]
+position = Vector2(180, 42)
+
+[connection signal="body_entered" from="NoticeArea" to="." method="_on_notice_area_body_entered"]
+[connection signal="body_exited" from="NoticeArea" to="." method="_on_notice_area_body_exited"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="timeout" from="Timers/NavigationTimer" to="." method="_on_navigation_timer_timeout"]
