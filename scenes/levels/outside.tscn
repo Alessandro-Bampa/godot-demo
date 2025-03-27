@@ -177,7 +177,6 @@ texture = ExtResource("18_vkmey")
 [node name="Corner2" type="Sprite2D" parent="Infestation" index="4"]
 position = Vector2(863, 6735)
 rotation = -0.150098
-scale = Vector2(1, 1)
 texture = ExtResource("18_vkmey")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Infestation" index="5"]
@@ -188,7 +187,6 @@ metadata/_edit_group_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Infestation/StaticBody2D" index="0"]
 position = Vector2(-6.10352e-05, 0)
-scale = Vector2(1, 1)
 polygon = PackedVector2Array(669, 6590, 675, 6628, 763, 6624, 841, 6647, 907, 6688, 961, 6758, 1006, 6855, 1015, 6890, 1056, 6887, 1039, 6805, 996, 6725, 938, 6663, 864, 6617, 787, 6583, 700, 6582)
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Infestation" index="6"]
@@ -198,7 +196,6 @@ collision_mask = 11
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Infestation/StaticBody2D2" index="0"]
 position = Vector2(40, -44)
-scale = Vector2(1, 1)
 polygon = PackedVector2Array(962, 6560, 985, 6591, 948, 6634, 886, 6716, 861, 6780, 853, 6877, 878, 6953, 916, 7019, 893, 7039, 841, 6972, 820, 6910, 815, 6822, 839, 6712, 878, 6643, 925, 6585)
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Infestation" index="7"]

@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpio6d55knktl"]
+[gd_scene load_steps=15 format=3 uid="uid://dpio6d55knktl"]
 
 [ext_resource type="Script" uid="uid://hapivsr7iwr5" path="res://scenes/enemy/hunter.gd" id="1_dan73"]
 [ext_resource type="Texture2D" uid="uid://b88q87magdqy2" path="res://graphics/enemies/hunter/parts/torso.png" id="2_7ktkj"]
 [ext_resource type="Texture2D" uid="uid://dexp64mnvwhix" path="res://graphics/enemies/hunter/parts/leg_front_inner.png" id="3_hektb"]
 [ext_resource type="Texture2D" uid="uid://dp6bjlcp6msrd" path="res://graphics/enemies/hunter/parts/leg_front_outer.png" id="4_viaww"]
+[ext_resource type="Texture2D" uid="uid://cxte6vrwmxdmk" path="res://graphics/enemies/hunter/parts/head.png" id="5_hektb"]
+[ext_resource type="Texture2D" uid="uid://ro6fx6h1v8jk" path="res://graphics/enemies/hunter/parts/leg_back_inner.png" id="6_viaww"]
+[ext_resource type="Texture2D" uid="uid://cqp8rc1ix4rtg" path="res://graphics/enemies/hunter/parts/leg_back_outer.png" id="7_kt3ga"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dan73"]
 radius = 25.0
@@ -14,6 +17,38 @@ radius = 719.201
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dan73"]
 radius = 221.002
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_7ktkj"]
+resource_name = "FrontRightLeg"
+target_nodepath = NodePath("../Targets/FrontRight")
+flip_bend_direction = true
+joint_one_bone_idx = 1
+joint_one_bone2d_node = NodePath("Torso/FrontRightLeg")
+joint_two_bone_idx = 2
+joint_two_bone2d_node = NodePath("Torso/FrontRightLeg/FrontRightClaw")
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_hektb"]
+resource_name = "FrontLeftLeg"
+target_nodepath = NodePath("../Targets/FrontLeft")
+joint_one_bone_idx = 3
+joint_one_bone2d_node = NodePath("Torso/FrontLeftLeg")
+joint_two_bone_idx = 4
+joint_two_bone2d_node = NodePath("Torso/FrontLeftLeg/FrontLeftClaw")
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_c738y"]
+resource_name = "BackRightLeg"
+target_nodepath = NodePath("../Targets/BackRight")
+joint_one_bone_idx = 6
+joint_one_bone2d_node = NodePath("Torso/BackRightLeg")
+joint_two_bone_idx = 7
+joint_two_bone2d_node = NodePath("Torso/BackRightLeg/BackRightClaw")
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_hektb"]
+enabled = true
+modification_count = 3
+modifications/0 = SubResource("SkeletonModification2DTwoBoneIK_7ktkj")
+modifications/1 = SubResource("SkeletonModification2DTwoBoneIK_hektb")
+modifications/2 = SubResource("SkeletonModification2DTwoBoneIK_c738y")
 
 [node name="Hunter" type="CharacterBody2D"]
 collision_layer = 2
@@ -51,17 +86,21 @@ wait_time = 2.0
 autostart = true
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
+modification_stack = SubResource("SkeletonModificationStack2D_hektb")
 
 [node name="Torso" type="Bone2D" parent="Skeleton2D"]
-metadata/_edit_lock_ = true
+position = Vector2(15, -30)
 
 [node name="Torso" type="Sprite2D" parent="Skeleton2D/Torso"]
 rotation = 1.5708
 texture = ExtResource("2_7ktkj")
+metadata/_edit_lock_ = true
 
 [node name="FrontRightLeg" type="Bone2D" parent="Skeleton2D/Torso"]
-position = Vector2(54, 24)
-rotation = 1.5708
+position = Vector2(104, 19)
+rotation = 2.36472
+scale = Vector2(0.999971, 0.999971)
+metadata/_local_pose_override_enabled_ = true
 
 [node name="LegFrontInner" type="Sprite2D" parent="Skeleton2D/Torso/FrontRightLeg"]
 position = Vector2(26, -34)
@@ -71,19 +110,84 @@ texture = ExtResource("3_hektb")
 position = Vector2(49, -60)
 auto_calculate_length_and_angle = false
 length = 120.0
-bone_angle = -56.842
+bone_angle = -50.7626
+metadata/_local_pose_override_enabled_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Torso/FrontRightLeg/FrontRightClaw"]
 position = Vector2(45, -36)
 texture = ExtResource("4_viaww")
 
+[node name="FrontLeftLeg" type="Bone2D" parent="Skeleton2D/Torso"]
+position = Vector2(105, -38)
+rotation = -1.03999
+scale = Vector2(0.999994, 0.999994)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Torso/FrontLeftLeg"]
+position = Vector2(35, -28)
+rotation = 1.5708
+scale = Vector2(-1, 1)
+texture = ExtResource("3_hektb")
+
+[node name="FrontLeftClaw" type="Bone2D" parent="Skeleton2D/Torso/FrontLeftLeg"]
+position = Vector2(62, -50)
+auto_calculate_length_and_angle = false
+length = 120.0
+bone_angle = -8.947
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Torso/FrontLeftLeg/FrontLeftClaw"]
+position = Vector2(50, -29)
+rotation = 1.96699
+scale = Vector2(-1, 1)
+texture = ExtResource("4_viaww")
+
+[node name="Head" type="Bone2D" parent="Skeleton2D/Torso"]
+position = Vector2(100, -6)
+auto_calculate_length_and_angle = false
+length = 120.0
+bone_angle = -3.158
+
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Torso/Head"]
+position = Vector2(57, -5)
+rotation = 1.5708
+texture = ExtResource("5_hektb")
+
+[node name="BackRightLeg" type="Bone2D" parent="Skeleton2D/Torso"]
+position = Vector2(54, 21)
+rotation = -0.530785
+scale = Vector2(0.999952, 0.999952)
+metadata/_edit_group_ = true
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Torso/BackRightLeg"]
+position = Vector2(-33, 22)
+rotation = -1.5708
+texture = ExtResource("6_viaww")
+
+[node name="BackRightClaw" type="Bone2D" parent="Skeleton2D/Torso/BackRightLeg"]
+position = Vector2(-67, 41)
+auto_calculate_length_and_angle = false
+length = 120.0
+bone_angle = 155.0
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Torso/BackRightLeg/BackRightClaw"]
+position = Vector2(-42, 32)
+rotation = 1.5708
+texture = ExtResource("7_kt3ga")
+
 [node name="Targets" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="FrontRight" type="Marker2D" parent="Targets"]
-position = Vector2(222, 142)
+position = Vector2(286, 7)
 
-[node name="Marker2D2" type="Marker2D" parent="Targets"]
-position = Vector2(180, 42)
+[node name="FrontLeft" type="Marker2D" parent="Targets"]
+position = Vector2(262, -110)
+
+[node name="BackRight" type="Marker2D" parent="Targets"]
+position = Vector2(-92, 112)
 
 [connection signal="body_entered" from="NoticeArea" to="." method="_on_notice_area_body_entered"]
 [connection signal="body_exited" from="NoticeArea" to="." method="_on_notice_area_body_exited"]
