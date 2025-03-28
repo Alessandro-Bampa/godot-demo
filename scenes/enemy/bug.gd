@@ -61,6 +61,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func hit(hitDamage: int = 0):
 	if can_be_hitted:
 		can_be_hitted = false
+		$AudioStreamPlayer2D.play()
 		$Timers/HitTimer.start()
 		$AnimatedSprite2D.material.set_shader_parameter("progress", 1)
 		$Particles/HitParticles.emitting = true

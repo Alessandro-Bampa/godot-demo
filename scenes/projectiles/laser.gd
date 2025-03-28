@@ -10,7 +10,6 @@ func _process(delta: float) -> void:
 	
 func _ready() -> void:
 	$DestroyAfterShoot.start()
-	
 
 func _on_body_entered(body: Node2D) -> void:
 	if "hit" in body:

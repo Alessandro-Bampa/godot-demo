@@ -2,6 +2,8 @@ extends Node
 
 signal stats_change
 
+var player_hit_sound: AudioStreamPlayer2D
+
 var laser_amount: int = 20:
 	get:
 		return laser_amount
@@ -20,7 +22,16 @@ var health = 60:
 	set(value):
 		if value > 100:
 			value = 100
+		if(value < health):
+			player_hit_sound.play()
 		health = value
+		
 		stats_change.emit()
 		
 var player_position: Vector2
+
+
+func _ready() -> void:
+	player_hit_sound = AudioStreamPlayer2D.new()
+	player_hit_sound.stream = load("res://audio/solid_impact.ogg")
+	add_child(player_hit_sound)

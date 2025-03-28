@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1ak7qjoopd0d"]
+[gd_scene load_steps=6 format=3 uid="uid://d1ak7qjoopd0d"]
 
 [ext_resource type="PackedScene" uid="uid://co73dpdqp5aw" path="res://scenes/assets/item_container.tscn" id="1_d6xfa"]
 [ext_resource type="Script" uid="uid://ccmqj0cls1hs6" path="res://scenes/assets/crate.gd" id="2_vbyva"]
 [ext_resource type="Texture2D" uid="uid://xqtvsgrbxa2i" path="res://graphics/objects/box/base.png" id="3_66m1a"]
 [ext_resource type="Texture2D" uid="uid://da5vj4fn444cj" path="res://graphics/objects/box/lid.png" id="3_d6xfa"]
+[ext_resource type="AudioStream" uid="uid://bxryv8phmg5ne" path="res://audio/container_hit.mp3" id="5_bce7e"]
 
 [node name="Crate" instance=ExtResource("1_d6xfa")]
 script = ExtResource("2_vbyva")
@@ -60,3 +61,7 @@ position = Vector2(76, 29)
 
 [node name="Marker2D12" type="Marker2D" parent="SpawnPosition" index="12"]
 position = Vector2(65, -5)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="4"]
+stream = ExtResource("5_bce7e")
+volume_db = -10.0
