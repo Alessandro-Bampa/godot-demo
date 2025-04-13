@@ -61,60 +61,6 @@ modifications/1 = SubResource("SkeletonModification2DTwoBoneIK_hektb")
 modifications/2 = SubResource("SkeletonModification2DTwoBoneIK_c738y")
 modifications/3 = SubResource("SkeletonModification2DTwoBoneIK_kt3ga")
 
-[sub_resource type="Animation" id="Animation_c738y"]
-resource_name = "walk"
-length = 0.6
-loop_mode = 1
-step = 0.033
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Targets/FrontRight:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(184, 70), Vector2(211, 38), Vector2(135, 86), Vector2(184, 70)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Targets/FrontLeft:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.566667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(180, -55), Vector2(111, -88), Vector2(212, -51), Vector2(180, -55)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Targets/BackRight:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(2.98023e-08, 0.133333, 0.366667, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-203, 62), Vector2(-213, 20), Vector2(-128, 50), Vector2(-203, 62)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Targets/BackLeft:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(2.98023e-08, 0.166667, 0.366667, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-192, -65), Vector2(-130, -58), Vector2(-211, -55), Vector2(-192, -65)]
-}
-
 [sub_resource type="Animation" id="Animation_2q1ly"]
 length = 0.001
 tracks/0/type = "value"
@@ -233,6 +179,60 @@ tracks/2/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_c738y"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+step = 0.033
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Targets/FrontRight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(184, 70), Vector2(211, 38), Vector2(135, 86), Vector2(184, 70)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Targets/FrontLeft:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.566667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(180, -55), Vector2(111, -88), Vector2(212, -51), Vector2(180, -55)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Targets/BackRight:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.98023e-08, 0.133333, 0.366667, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-203, 62), Vector2(-213, 20), Vector2(-128, 50), Vector2(-203, 62)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Targets/BackLeft:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.98023e-08, 0.166667, 0.366667, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-192, -65), Vector2(-130, -58), Vector2(-211, -55), Vector2(-192, -65)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gfts5"]
 _data = {
 &"RESET": SubResource("Animation_2q1ly"),
@@ -246,14 +246,12 @@ collision_mask = 15
 script = ExtResource("1_dan73")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-3, 2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_dan73")
 metadata/_edit_lock_ = true
 
 [node name="NoticeArea" type="Area2D" parent="."]
-visible = false
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
@@ -262,7 +260,6 @@ shape = SubResource("CircleShape2D_lkknp")
 debug_color = Color(0.638691, 0.520394, 0.20767, 0.42)
 
 [node name="AttackArea" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(142, -4)
